@@ -1,462 +1,949 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
-<title> Xiaohan Zhang </title>
-<meta charset="utf-8">
-<meta name="description" content="Xiaohan Zhang">
-<meta name="keywords" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-    A {
-        text-decoration: none
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaohan Zhang</title>
+    <meta name="description" content="Dr. Xiaohan Zhang — Pre-tenure Associate Professor at Fudan University. Research on mobile security, malware detection, and AI security.">
+    <meta name="keywords" content="Xiaohan Zhang, Fudan University, Cybersecurity, Mobile Security, AI Security, Malware Detection">
 
-    body {
-        font: 100% Verdana, Arial, Helvetica, sans-serif;
-        background-color: #FFFFFF;
-        list-style: blue4;
-        vlink: #0000ff;
-        margin: 0;
-        padding: 0;
-    }
+    <style>
+        /* ============================================================
+           Design tokens — change --accent to re-skin the whole site
+           ============================================================ */
+        :root {
+            --accent: #1d4ed8;
+            --accent-dark: #1e3a8a;
+            --accent-soft: #eff4ff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f9fafb;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --award-blue: #1d4ed8;
+            --award-red: #dc2626;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06), 0 1px 3px rgba(15, 23, 42, .04);
+            --shadow-md: 0 4px 12px rgba(15, 23, 42, .08);
+            --radius: 12px;
+            --maxw: 920px;
+        }
 
-    body table {
-        margin: 0;
-        padding: 0;
-    }
+        /* ============================================================
+           Reset & base
+           ============================================================ */
+        * { box-sizing: border-box; }
 
-    body table tr {
-        margin: 0;
-        padding: 0;
-    }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-    li {
-        margin-bottom: 10px;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-    #pub {
-        font-family: helvetica;
-    }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color .15s ease;
+        }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
 
-    #pub li {
-        margin-bottom: 15px;
-    }
+        h1, h2, h3, h4 { color: #111827; line-height: 1.3; font-weight: 700; }
 
-    #pub li div {
-        margin-bottom: 5px;
-    }
+        .container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    #pub li .title {
-        color: #333;
-        font-weight: bold;
-    }
+        /* ============================================================
+           Navbar
+           ============================================================ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, .85);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .nav-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 16px;
+            color: #111827;
+            letter-spacing: -.01em;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 6px; align-items: center; }
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .15s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+            background: var(--accent-soft);
+            text-decoration: none;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #111827;
+            border-radius: 2px;
+            transition: .2s;
+        }
+        .nav-toggle span + span { margin-top: 5px; }
 
-    #pub li .author {
-        font-style: italic;
-    }
+        /* ============================================================
+           Hero
+           ============================================================ */
+        .hero {
+            padding: 72px 0 56px;
+        }
+        .hero-grid {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+        /* Avatar placeholder — replace with <img class="avatar" src="files/photo.jpg" alt="Xiaohan Zhang">
+           when a real photo is available. */
+        .avatar-placeholder {
+            width: 188px;
+            height: 188px;
+            min-width: 188px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 60px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            box-shadow: var(--shadow-md);
+        }
+        .avatar {
+            width: 150px;
+            min-width: 150px;
+            /* Match the photo's native 3:4 ratio so the whole person is shown with no crop.
+               To resize, change only `width` — height follows automatically. */
+            aspect-ratio: 3 / 4;
+            border-radius: 14px;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: var(--shadow-md);
+            border: 4px solid #fff;
+        }
+        .hero-body h1 {
+            font-size: 38px;
+            margin: 0 0 8px;
+            letter-spacing: -.02em;
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--accent);
+            font-weight: 600;
+            margin: 0 0 18px;
+        }
+        .hero-bio {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 620px;
+            margin: 0 0 14px;
+        }
+        .hero-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 22px;
+        }
+        .hero-award {
+            display: inline-block;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 5px 11px;
+            border-radius: 999px;
+            line-height: 1.4;
+            background: var(--accent-soft);
+            color: var(--accent-dark);
+            border: 1px solid #dbe6ff;
+        }
+        .social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            background: var(--card);
+            transition: all .15s ease;
+        }
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+        .social-link svg { width: 16px; height: 16px; }
 
-    #tracker {
-        text-align: center;
-        margin: 10px auto;
-        /* widows: 50px; */
-    }
-</style>
+        /* ============================================================
+           Section headers
+           ============================================================ */
+        section { padding: 48px 0; }
+        .section-title {
+            font-size: 24px;
+            margin: 0 0 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 22px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* ============================================================
+           Timeline (News + Background)
+           ============================================================ */
+        .timeline { list-style: none; padding: 0; margin: 0; }
+        .timeline li {
+            position: relative;
+            padding: 0 0 22px 28px;
+            margin: 0;
+            border-left: 2px solid var(--border);
+        }
+        .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px var(--border);
+        }
+        .timeline .tl-date {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .timeline .tl-content { color: var(--text); }
+
+        /* ============================================================
+           Publications
+           ============================================================ */
+        .pub-year {
+            font-size: 20px;
+            color: var(--accent-dark);
+            margin: 36px 0 16px;
+            font-weight: 700;
+        }
+        .pub-year:first-child { margin-top: 0; }
+        .pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+        .pub-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            transition: all .18s ease;
+        }
+        .pub-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .pub-title { font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 6px; }
+        .pub-authors { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+        .pub-authors .me { color: var(--accent); font-weight: 600; }
+        .pub-venue { color: var(--text); font-size: 14px; font-style: italic; margin-bottom: 10px; }
+        .pub-venue b { font-style: normal; color: var(--accent-dark); }
+        .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+        .badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 999px;
+            line-height: 1.5;
+        }
+        .badge-award { background: #eff4ff; color: var(--award-blue); border: 1px solid #dbe6ff; }
+        .badge-vuln  { background: #fef2f2; color: var(--award-red); border: 1px solid #fecaca; }
+        .badge-meta  { background: var(--bg-alt); color: var(--muted); border: 1px solid var(--border); }
+        .pub-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pub-links a {
+            display: inline-block;
+            font-size: 13px;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--accent);
+            background: var(--bg-alt);
+            transition: all .15s ease;
+        }
+        .pub-links a:hover { background: var(--accent); color: #fff; border-color: var(--accent); text-decoration: none; }
+
+        .pub-subhead { font-size: 15px; color: var(--muted); margin: 36px 0 12px; font-weight: 600; }
+
+        /* ============================================================
+           Cards grid (Awards, Students)
+           ============================================================ */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .award-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 14px;
+            transition: all .15s ease;
+        }
+        .award-card:hover { box-shadow: var(--shadow-sm); transform: translateX(2px); }
+
+        /* ============================================================
+           Two-column (Services)
+           ============================================================ */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .col-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+        }
+        .col-card h4 { margin: 0 0 10px; font-size: 15px; color: var(--accent-dark); }
+        .col-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+        /* ============================================================
+           Generic list styling
+           ============================================================ */
+        ul.clean { list-style: none; padding: 0; margin: 0; }
+        ul.clean > li { padding: 6px 0; }
+        .student-group { margin-bottom: 24px; }
+        .student-group h4 {
+            font-size: 14px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin: 0 0 10px;
+        }
+        .student-group ul { list-style: none; padding: 0; margin: 0; }
+        .student-group li { padding: 4px 0; font-size: 15px; }
+        .student-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 1px 7px;
+            border-radius: 4px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+
+        /* ============================================================
+           Footer
+           ============================================================ */
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--bg-alt);
+            padding: 32px 0;
+            margin-top: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        footer .footer-contact { margin-bottom: 6px; }
+        footer a { color: var(--muted); }
+
+        /* ============================================================
+           Responsive
+           ============================================================ */
+        @media (max-width: 768px) {
+            .hero-grid { flex-direction: column-reverse; text-align: center; gap: 28px; }
+            .hero-bio { margin-left: auto; margin-right: auto; }
+            .social-row { justify-content: center; }
+            .hero-body h1 { font-size: 30px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .two-col { grid-template-columns: 1fr; }
+
+            .nav-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 16px 16px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+                display: none;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 12px; }
+        }
+    </style>
 </head>
 
 <body>
-   
-    <table width="100%" cellpadding=0>
-        <tr>
-            <td width="15%" bgcolor="lightgray"></td>
-            <td width="5%" bgcolor="white"></td>
-            <td width="60%">
-                <br>
-                <h2><b>Dr. Xiaohan Zhang</b></h2>
 
-                I am a Pre-tenure Associate Professor of Fudan University, where I obtained my B.Eng and Ph.D under the supervision of <a
-                href="https://scholar.google.com/citations?hl=en&user=UnKf9FIAAAAJ">Prof. Min Yang</a>. 
-                I currently work at the <a href="https://security.fudan.edu.cn/members/faculty/zxh">System Software & Security Lab</a>. 
+    <!-- ===================== Navbar ===================== -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#top" class="nav-logo">Xiaohan <span>Zhang</span></a>
+            <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#news">News</a>
+                <a href="#background">Background</a>
+                <a href="#publications">Publications</a>
+                <a href="#awards">Awards</a>
+                <a href="#services">Services</a>
+                <a href="#teaching">Teaching</a>
+                <a href="#students">Students</a>
+            </div>
+        </div>
+    </nav>
 
-                <br>
-                <br>
+    <!-- ===================== Hero ===================== -->
+    <header class="hero" id="top">
+        <div class="container">
+            <div class="hero-grid">
+                <img class="avatar" src="files/photo.jpg" alt="Xiaohan Zhang">
 
-                My research mainly focues on cybersecurity, including mobile application security, malware detection and applied AI security. 
-                <br>
-                <br>
-                I published papers as (co-)first authors at the "Big 4" security venues, and has received a <strong>Distinguished Paper Award Nomination at ACM CCS 2020 (4/121)</strong>, a <strong>Distinguished Paper Award at NDSS 2025</strong>, and a Distinguished Paper Award at USENIX Security 2022.
-                <br>
-                <br>
-                My researches have found hundreds of high-risk vulnerabilities, and have won the "<strong>CNVD 2021 Most Valuable Vulnerability</strong>" by the Chinese National Vulnerability Database (<a href="https://www.cnvd.org.cn/">CNVD</a>)
-                , and the "<strong>CAPPVD 2024 Outstanding Cases of Mobile App Vulnerability Management</strong>" by the China National App Vulnerability Database  (<a href="https://www.cappvd.org.cn/">CAPPVD</a>).
+                <div class="hero-body">
+                    <h1>Dr. Xiaohan Zhang</h1>
+                    <p class="hero-subtitle">Pre-tenure Associate Professor · Fudan University</p>
+                    <p class="hero-bio">
+                        I work at the <a href="https://security.fudan.edu.cn/members/faculty/zxh">System Software &amp; Security Lab</a>, Fudan University.
+                        My research focuses on <strong>cybersecurity</strong>, including mobile application security,
+                        malware detection, and applied AI security. I obtained my B.Eng and Ph.D. at Fudan University
+                        under the supervision of <a href="https://scholar.google.com/citations?hl=en&user=UnKf9FIAAAAJ">Prof. Min Yang</a>.
+                    </p>
+                    <p class="hero-bio">
+                        I have published papers as (co-)first author at the "Big Four" security venues, and received
+                        the <strong>NDSS 2025 Distinguished Paper Award</strong>, the
+                        <strong>USENIX Security 2022 Distinguished Paper Award</strong>, the
+                        <strong>USENIX Security 2025 Honorable Mention Award</strong>, and a
+                        <strong>CCS 2020 Distinguished Paper Award Nomination</strong>. My work on face verification
+                        security won the <strong>CNVD 2021 Most Valuable Vulnerability</strong> from the Chinese
+                        National Vulnerability Database.
+                    </p>
+                    <p class="hero-bio">
+                        I am always looking for highly-motivated undergraduate students interested in cybersecurity.
+                        Feel free to reach out at <i>xh_zhang [AT] fudan.edu.cn</i>.
+                    </p>
+                    <div class="social-row">
+                        <a class="social-link" href="mailto:xh_zhang@fudan.edu.cn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+                            Email
+                        </a>
+                        <a class="social-link" href="https://scholar.google.com/citations?user=Qe-LKawAAAAJ" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.8 3.5L12 7l7.2 6 4.8-3.5z"/></svg>
+                            Scholar
+                        </a>
+                        <a class="social-link" href="https://github.com/xhzhang" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.28 1.2-3.09-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.5 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.75.81 1.2 1.83 1.2 3.09 0 4.43-2.69 5.4-5.25 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+                            GitHub
+                        </a>
+                        <a class="social-link" href="https://security.fudan.edu.cn/members/faculty/zxh" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21V12h6v9"/></svg>
+                            Department
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                
-                <br><br>
+    <!-- ===================== News ===================== -->
+    <section id="news">
+        <div class="container">
+            <h2 class="section-title">News</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="tl-date">Dec 2025</div>
+                    <div class="tl-content">Our paper on Cross-Device Authentication (XDAuth) Usability has been accepted to <strong>NDSS 2026</strong>. Congrats to Xin Zhang and Huijun Zhou.</div>
+                </li>
+                <li>
+                    <div class="tl-date">Aug 2025</div>
+                    <div class="tl-content">Our paper QRLChecker won the <strong>USENIX Security 2025 Honorable Mention Award</strong>.</div>
+                </li>
+                <li>
+                    <div class="tl-date">Jul 2025</div>
+                    <div class="tl-content">The Face Verification Security student research project I supervised has been awarded funding from the School of Cybersecurity's Student Innovation Program. Congrats to Yujia Ma and Yuhan Gu!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Apr 2025</div>
+                    <div class="tl-content">Our team won the <strong>Gold Award</strong> in the App Security Track of the Digital China Innovation Contest (DCIC 2025). Congrats to Xin Zhang, Bo Zhao, and Huijun Zhou!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Mar 2025</div>
+                    <div class="tl-content">Our work on QRLogin security (Security '25 paper) has been selected as one of the "CAPPVD 2024 Outstanding Cases of Mobile App Vulnerability Management".</div>
+                </li>
+                <li>
+                    <div class="tl-date">Feb 2025</div>
+                    <div class="tl-content">Our paper on Fingerprint API Security won the <strong>NDSS 2025 Distinguished Paper Award</strong>! Congrats to Xin and all authors!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Jan 2025</div>
+                    <div class="tl-content">Our paper on QR code authentication security has been accepted to <strong>USENIX Security 2025</strong>. Congrats to Xin Zhang!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Aug 2024</div>
+                    <div class="tl-content">Two papers accepted to <strong>NDSS 2025</strong>. Congrats to Xin Zhang and Yizhe Shi!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Jun 2024</div>
+                    <div class="tl-content">All three master students (2021 cohort) have successfully graduated! <a href="#students">See where they go.</a></div>
+                </li>
+                <li>
+                    <div class="tl-date">May 2023</div>
+                    <div class="tl-content">A <a href="https://secsys.fudan.edu.cn/af/23/c26973a503587/page.htm">white paper</a> on AI security standards, where I am one of the drafters, was published!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Apr 2023</div>
+                    <div class="tl-content">Our paper on face verification security, named <strong>XFVSChecker</strong>, was accepted by <a href="https://www.ieee-security.org/TC/SP2023/">IEEE S&amp;P 2023</a>!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Mar 2023</div>
+                    <div class="tl-content">Yang Wang received offers from CMU and GT. Congrats to her!</div>
+                </li>
+                <li>
+                    <div class="tl-date">Jan 2023</div>
+                    <div class="tl-content">All four master students (2020 cohort) have successfully graduated! <a href="#students">See where they go.</a></div>
+                </li>
+                <li>
+                    <div class="tl-date">Dec 2022</div>
+                    <div class="tl-content">Our team won <strong>1st prize</strong> in the <a href="https://cpipc.acge.org.cn//cw/detail/2c90800c8093eef401809d33b36f0652/2c90800c8423bdf10184bd84b1893ff8">China Graduate Network Security Innovation Competition</a>. Congrats to Ziqi Huang, Liang Niu, Zhichen Liu, and Haoqi Ye! I received the Excellent Advising Teacher Award.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
 
-                I'm currently looking for students who are interested in cybersecurity. Please contact me through:
+    <!-- ===================== Background ===================== -->
+    <section id="background" style="background: var(--bg-alt);">
+        <div class="container">
+            <h2 class="section-title">Background</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="tl-date">2023 — Present</div>
+                    <div class="tl-content"><strong>Fudan University</strong> — Pre-tenure Associate Professor</div>
+                </li>
+                <li>
+                    <div class="tl-date">2020 — 2022</div>
+                    <div class="tl-content"><strong>Fudan University</strong>, School of Computer Science — PostDoc</div>
+                </li>
+                <li>
+                    <div class="tl-date">2014 — 2020</div>
+                    <div class="tl-content"><strong>Fudan University</strong>, School of Computer Science — Ph.D.</div>
+                </li>
+                <li>
+                    <div class="tl-date">2010 — 2014</div>
+                    <div class="tl-content"><strong>Fudan University</strong>, Software School — B.Eng.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===================== Publications ===================== -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <p style="color: var(--muted); margin-top: -16px; margin-bottom: 24px; font-size: 14px;">
+                <span class="me" style="color: var(--accent); font-weight: 600;">Xiaohan Zhang</span> is highlighted in bold;
+                ✉ denotes corresponding author; ★ marks co-first author.
+            </p>
+
+            <!-- 2026 -->
+            <h3 class="pub-year">2026</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Anchors of Trust: A Usability Study on User Awareness, Consent, and Control in Cross-Device Authentication.</div>
+                    <div class="pub-authors">Xin Zhang, <span class="me">Xiaohan Zhang</span>✉, Huijun Zhou, Bo Zhao.</div>
+                    <div class="pub-venue">In Proceedings of the Network and Distributed System Security Symposium <b>(NDSS 2026)</b>, San Diego.</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">SEW: Strengthening Robustness of Black-box DNN Watermarking via Specificity Enhancement.</div>
+                    <div class="pub-authors">Huming Qiu, Mi Zhang, Junjie Sun, Peiyi Chen, <span class="me">Xiaohan Zhang</span>, Min Yang.</div>
+                    <div class="pub-venue">The SIGKDD Conference on Knowledge Discovery and Data Mining <b>(KDD 2026)</b>, Jeju, Korea.</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">3D-ANC: Adaptive Neural Collapse for Robust 3D Point Cloud Recognition.</div>
+                    <div class="pub-authors">Yuanmin Huang, Wenxuan Li, Mi Zhang, <span class="me">Xiaohan Zhang</span>, Xiaoyu You, Min Yang.</div>
+                    <div class="pub-venue">The 40th AAAI Conference on Artificial Intelligence <b>(AAAI 2026)</b>.</div>
+                </li>
+            </ol>
+
+            <!-- 2025 -->
+            <h3 class="pub-year">2025</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">The Future Unmarked: Watermark Removal in AI-Generated Images via Next-Frame Prediction.</div>
+                    <div class="pub-authors">Huming Qiu, Zhaoxiang Wang, Mi Zhang, <span class="me">Xiaohan Zhang</span>, Xiaoyu You, Min Yang.</div>
+                    <div class="pub-venue">The 39th Annual Conference on Neural Information Processing Systems <b>(NeurIPS 2025)</b>.</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Demystifying the (In)Security of QR Code-based Login in Real-world Deployments.</div>
+                    <div class="pub-authors">Xin Zhang, <span class="me">Xiaohan Zhang</span>, Bo Zhao, Yuhong Nan, Zhichen Liu, Jianzhou Chen, Huijun Zhou, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 34th USENIX Security Symposium <b>(USENIX Security 2025)</b>, Seattle, WA, USA.</div>
+                    <div class="badges">
+                        <span class="badge badge-award">USENIX Security 2025 Honorable Mention Award</span>
+                        <span class="badge badge-vuln">17 CNVD &amp; 25 NVDB IDs</span>
+                        <span class="badge badge-vuln">CAPPVD 2024 Outstanding Cases</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/QRLChecker-Security25.pdf">Paper</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">An Empirical Study on Fingerprint API Misuse with Lifecycle Analysis in Real-world Android Apps.</div>
+                    <div class="pub-authors">Xin Zhang★, <span class="me">Xiaohan Zhang</span>★, Zhichen Liu, Bo Zhao, Zhemin Yang, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the Network and Distributed System Security Symposium <b>(NDSS 2025)</b>, San Diego.</div>
+                    <div class="badges">
+                        <span class="badge badge-award">NDSS 2025 Distinguished Paper Award</span>
+                        <span class="badge badge-vuln">184 CVE &amp; 19 CNVD IDs</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/FpAuth-ndss2025.pdf">Paper</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">The Skeleton Keys: A Large Scale Analysis of Credential Leakage in Mini-apps.</div>
+                    <div class="pub-authors">Yizhe Shi, Zhemin Yang, Kangwei Zhong, Guangliang Yang, Yifan Yang, <span class="me">Xiaohan Zhang</span>, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the Network and Distributed System Security Symposium <b>(NDSS 2025)</b>, San Diego.</div>
+                    <div class="badges">
+                        <span class="badge badge-vuln">89 CVE IDs</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/KeyMagnet-ndss2025.pdf">Paper</a>
+                    </div>
+                </li>
+            </ol>
+
+            <!-- 2023 -->
+            <h3 class="pub-year">2023</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Understanding the (In)Security of Cross-side Face Verification Systems in Mobile Apps: A System Perspective.</div>
+                    <div class="pub-authors"><span class="me">Xiaohan Zhang</span>, Haoqi Ye, Ziqi Huang, Xiao Ye, Yinzhi Cao, Yuan Zhang, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 44th IEEE Symposium on Security and Privacy <b>(S&amp;P 2023)</b>, San Francisco, CA.</div>
+                    <div class="badges">
+                        <span class="badge badge-vuln">CNVD 2021 Most Valuable Vulnerability</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/XFVSChecker-S&P23.pdf">Paper</a>
+                        <a href="https://xhzhang.github.io/XFVSChecker">Website</a>
+                        <a href="https://std.samr.gov.cn/gb/search/gbDetailed?id=EB58F4DA926CB2A2E05397BE0A0A7D33">National Standard</a>
+                        <a href="https://www.tc260.org.cn/upload/2023-05-31/1685501487351066337.pdf">White Paper</a>
+                    </div>
+                </li>
+            </ol>
+
+            <!-- 2022 -->
+            <h3 class="pub-year">2022</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Slowing Down the Aging of Learning-based Malware Detectors with API Knowledge.</div>
+                    <div class="pub-authors"><span class="me">Xiaohan Zhang</span>, Mi Zhang, Yuan Zhang, Ming Zhong, Xin Zhang, Yinzhi Cao, Min Yang.</div>
+                    <div class="pub-venue">IEEE Transactions on Dependable and Secure Computing <b>(TDSC 2022)</b>.</div>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/9693181">Paper</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Collect Responsibly but Deliver Arbitrarily? A Study on Cross-User Privacy Leakage in Mobile Apps.</div>
+                    <div class="pub-authors">Shuai Li, Zhemin Yang, Nan Hua, Peng Liu, <span class="me">Xiaohan Zhang</span>, Guangliang Yang, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 29th ACM Conference on Computer and Communications Security <b>(CCS 2022)</b>.</div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Identity Confusion in WebView-based Mobile App-in-app Ecosystems.</div>
+                    <div class="pub-authors">Lei Zhang, Zhibo Zhang, Ancong Liu, Yinzhi Cao, <span class="me">Xiaohan Zhang</span>, Yanjun Chen, Yuan Zhang, Guangliang Yang, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 31st USENIX Security Symposium <b>(USENIX Security 2022)</b>, Boston, MA.</div>
+                    <div class="badges">
+                        <span class="badge badge-award">USENIX Security 2022 Distinguished Paper Award</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/miniapp-identity-security22.pdf">Paper</a>
+                    </div>
+                </li>
+            </ol>
+
+            <!-- 2020 -->
+            <h3 class="pub-year">2020</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Enhancing State-of-the-art Classifiers with API Semantics to Detect Evolved Android Malware.</div>
+                    <div class="pub-authors"><span class="me">Xiaohan Zhang</span>, Yuan Zhang, Ming Zhong, Daizong Ding, Yinzhi Cao, Yukun Zhang, Mi Zhang, Min Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 27th ACM Conference on Computer and Communications Security <b>(CCS 2020)</b>, Orlando, USA.</div>
+                    <div class="badges">
+                        <span class="badge badge-award">ACM CCS 2020 Distinguished Paper Award Nomination (4/121)</span>
+                        <span class="badge badge-meta">AR: 16.9% (121/715)</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/apigraph-ccs20.pdf">Paper</a>
+                        <a href="https://xhzhang.github.io/APIGraph">Website</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">PDiff: Semantic-based Patch Presence Testing for Downstream Kernels.</div>
+                    <div class="pub-authors">Zheyue Jiang, Yuan Zhang, Jun Xu, Qi Wen, Zhenghe Wang, <span class="me">Xiaohan Zhang</span>, Xinyu Xing, Min Yang, Zhemin Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 27th ACM Conference on Computer and Communications Security <b>(CCS 2020)</b>, Orlando, USA.</div>
+                    <div class="pub-links">
+                        <a href="./files/pdiff-ccs20.pdf">Paper</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">BScout: Direct Whole Patch Presence Test for Java Executables.</div>
+                    <div class="pub-authors">Jiarun Dai, Yuan Zhang, Zheyue Jiang, Yingtian Zhou, Junyan Chen, Xinyu Xing, <span class="me">Xiaohan Zhang</span>, Xin Tan, Min Yang, Zhemin Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 29th USENIX Security Symposium <b>(USENIX Security 2020)</b>, Boston, MA.</div>
+                    <div class="pub-links">
+                        <a href="./files/bscout-security20.pdf">Paper</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">How Android Developers Handle Evolution-induced API Compatibility Issues: A Large-scale Study.</div>
+                    <div class="pub-authors">Hao Xia, Yuan Zhang, Yingtian Zhou, Xiaoting Chen, Yang Wang, Xiangyu Zhang, Shuaishuai Cui, Gen Hong, <span class="me">Xiaohan Zhang</span>, Min Yang, Zhemin Yang.</div>
+                    <div class="pub-venue">In Proceedings of the 42nd International Conference on Software Engineering <b>(ICSE 2020)</b>, Seoul, South Korea.</div>
+                    <div class="pub-links">
+                        <a href="./files/rapid-icse20.pdf">Paper</a>
+                    </div>
+                </li>
+            </ol>
+
+            <!-- 2018 -->
+            <h3 class="pub-year">2018</h3>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">An Empirical Study of Web Resource Manipulation in Real-world Mobile Applications.</div>
+                    <div class="pub-authors"><span class="me">Xiaohan Zhang</span>, Yuan Zhang, Qianqian Mo, Hao Xia, Zhemin Yang, Min Yang, Xiaofeng Wang, Long Lu, Haixin Duan.</div>
+                    <div class="pub-venue">In Proceedings of the 27th USENIX Security Symposium <b>(USENIX Security 2018)</b>, Baltimore, USA.</div>
+                    <div class="badges">
+                        <span class="badge badge-meta">AR: 16.2% (113/697)</span>
+                    </div>
+                    <div class="pub-links">
+                        <a href="./files/xpmchecker-security2018.pdf">Paper</a>
+                        <a href="https://github.com/seclab-fudan/XPMChecker">Dataset</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">Detecting Third-Party Libraries in Android Applications with High Precision and Recall.</div>
+                    <div class="pub-authors">Yuan Zhang, Jiarun Dai, <span class="me">Xiaohan Zhang</span>, Sirong Huang, Zhemin Yang, Min Yang, Hao Chen.</div>
+                    <div class="pub-venue">In Proceedings of IEEE International Conference on Software Analysis, Evolution and Reengineering <b>(SANER 2018)</b>, Campobasso, Italy.</div>
+                    <div class="pub-links">
+                        <a href="./files/libpecker-saner2018.pdf">Paper</a>
+                        <a href="https://github.com/seclab-fudan/LibPecker">Source Code</a>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="pub-subhead">Pre-prints &amp; Others</div>
+            <ol class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">Understanding Privacy Over-collection in WeChat Sub-app Ecosystem.</div>
+                    <div class="pub-authors">2023.</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2306.08391">arXiv</a></div>
+                </li>
+                <li class="pub-item">
+                    <div class="pub-title">MiniBot: A Lightweight Dynamic Test Input Generation Framework for Mini-Apps [in Chinese].</div>
+                    <div class="pub-authors">2024, Journal of Chinese Computer Systems.</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ===================== Awards ===================== -->
+    <section id="awards" style="background: var(--bg-alt);">
+        <div class="container">
+            <h2 class="section-title">Awards</h2>
+            <div class="grid-2">
+                <div class="award-card">Gold Award — App Security Track, Digital China Innovation Contest (DCIC 2025)</div>
+                <div class="award-card">CAPPVD 2024 Outstanding Cases of Mobile App Vulnerability Management</div>
+                <div class="award-card">NDSS 2025 Distinguished Paper Award</div>
+                <div class="award-card">USENIX Security 2025 Honorable Mention Award</div>
+                <div class="award-card">Excellent Instructor — "Huawei Cup" 1st China Postgraduate Network Security Innovation Competition</div>
+                <div class="award-card">USENIX Security 2022 Distinguished Paper Award</div>
+                <div class="award-card">CNVD 2021 Most Valuable Vulnerability</div>
+                <div class="award-card">CCF 2021 Natural Science Award, Second Prize</div>
+                <div class="award-card">SCS 2021 Natural Science Award, First Prize</div>
+                <div class="award-card">Huawei 2020 Outstanding Technical Achievement Award</div>
+                <div class="award-card">ACM CCS 2020 Distinguished Paper Award Nomination</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Services ===================== -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="two-col">
+                <div class="col-card">
+                    <h4>Conference Reviewer</h4>
+                    <p>CCS 2018, 2019 · EuroS&amp;P 2021 · AsiaCCS 2021 · CODASPY 2021 · SecureComm 2020, 2023</p>
+                </div>
+                <div class="col-card">
+                    <h4>Journal Reviewer</h4>
+                    <p>TOPS 2024 · JCST 2023 · TDSC 2020 · TMC 2021 · COSE 2019, 2020, 2021 · JCRD 2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Teaching ===================== -->
+    <section id="teaching" style="background: var(--bg-alt);">
+        <div class="container">
+            <h2 class="section-title">Teaching</h2>
+            <ul class="clean">
+                <li><strong>Advanced Optimizing Compilers</strong> — 2025 Spring</li>
+                <li><strong>Foundations of Deep Learning</strong> — 2024 Fall, 2025 Fall</li>
+                <li><strong>System Security</strong> — 2024 Fall</li>
+                <li><strong>Advanced Attack and Defense Techniques</strong> — 2024 Spring</li>
+                <li><strong>Principles of Reverse Engineering</strong> — 2018 (Teaching Assistant)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===================== Students ===================== -->
+    <section id="students">
+        <div class="container">
+            <h2 class="section-title">Students</h2>
+
+            <div class="student-group">
+                <h4>Current</h4>
                 <ul>
-                    <i>Email: xh_zhang [AT] fudan.edu.cn </i><br>
-
-                    <i>Office: Room D6007, NO.2 Interdisciplinary Building, NO.2005 Songhu Road, Yangpu District, Shanghai</i><br>
-
+                    <li>2026: Hongyuan Pan <span class="student-tag">PhD</span>, Shaoyu Tang, Yanqi Sun</li>
+                    <li>2025: Xiangjing Zhang, Haozhe Zhang, Wenjie Yang</li>
+                    <li>2024: Huijun Zhou, Xihua Shen, Yutao Shi, Yujia Ma <span style="color:var(--muted);font-size:13px;">[Tencent Project &amp; Internship]</span></li>
+                    <li>2022: Xin Zhang <span class="student-tag">PhD</span> <span class="student-tag">NDSS'25</span> <span class="student-tag">Security'25</span> <span class="student-tag">NDSS'26</span></li>
                 </ul>
-                <br>
+            </div>
 
-                <a href="#background">[Background]</a>
-                <a href="#publications">[Publications]</a>
-                <a href="#awards">[Awards]</a>
-                <a href="#services">[Services]</a>
-                <a href="#teaching">[Teaching]</a>
-                <a href="#students">[Students]</a>
+            <div class="student-group">
+                <h4>2023 — Graduated</h4>
+                <ul>
+                    <li>Jianzhou Chen → CUHK</li>
+                    <li>Bo Zhao → Gov</li>
+                    <li>Yuhan Gu → Xiaohongshu</li>
+                </ul>
+            </div>
 
+            <div class="student-group">
+                <h4>2022 — Graduated</h4>
+                <ul>
+                    <li><a href="https://jiujiuyan.github.io">Xinyu Cong</a> → ByteDance</li>
+                    <li><a href="https://showfaker.top/">Liang Niu</a> → Huawei</li>
+                    <li>Zhichen Liu → EastMoney</li>
+                </ul>
+            </div>
 
-                <hr size=2>
-                <h3><a name="news">News</a></h3>
-                <div>
-                    <ul>
-                        <li>[Dec, 2025] Our paper on Cross-Device Authentication (XDAuth) Usability has been accepted to NDSS 2026, Congrats to Xin Zhang and Huijun Zhou. </li>
-                        <li>[Aug, 2025] Our paper QRLChecker won the USENIX Security 2025 Honorable Mention Award. </li>
-                        <li>[Jul, 2025] The Face Verification Security student research project I supervised has been awarded funding from the School of Cybersecurity’s Student Innovation Program, Congrats to Yujia Ma and Yuhan Gu!</li>
-                        <li>[Apr, 2025] Our team won the Gold Award in the App Security Track of the Digital China Innovation Contest (DCIC 2025), Congrats to Xin Zhang, Bo Zhao, and Huijun Zhou! </li>
-                        <li>[Mar, 2025] Our work on QRLogin security (Security 25 paper) has been selected as one of the "CAPPVD 2024 Outstanding Cases of Mobile App Vulnerability Management"（工信部漏洞库）</li>
-                        <li>[Feb, 2025] Our paper on Fingerprint API Security won the NDSS 2025 Distinguished Paper Award! Congrats to Xin and all authors!</li>
-                        <li>[Jan, 2025] Our paper on QR code authentication security has been accepted to USENIX Security 2025, Congrats to Xin Zhang!</li>
-                        <li>[Aug, 2024] Two papers acceptted to NDSS 2025, Congrats to Xin Zhang and Yizhe Shi!</li>
-                        <li>[Jun, 2024] All three master students (2021) have successfully graduated! Congratulations! <a href="#students">See where they go.</li>
-                        <li>[May, 2023] A <a href="https://secsys.fudan.edu.cn/af/23/c26973a503587/page.htm">white paper</a> on AI security standards, where I am one of the drafters, was published! </li>
-                        <li>[Apr, 2023] Our paper on face verification security, named <strong>XFVSChecker</strong>, was acceptted by <a href="https://www.ieee-security.org/TC/SP2023/">IEEE S&P 2023</a>! </li>
-                        <li>[Mar, 2023] Yang Wang received offers from CMU and GT. Congrats to her!</li>
-                        <li>[Jan, 2023] All four master students (2020) have successfully graduated! Congratulations! <a href="#students">See where they go.</a></li>
-                        <li>[Dec, 2022] Our team won 1st prize in <a href="https://cpipc.acge.org.cn//cw/detail/2c90800c8093eef401809d33b36f0652/2c90800c8423bdf10184bd84b1893ff8">China Graduate Network Security Innovation Competition</a>. Congrats to Ziqi Huang, Liang Niu, Zhichen Liu, Haoqi Ye! 
-                            I received the Excellent Advising Teacher Award. 
-                        </li>
-                    </ul>
-                </div>
+            <div class="student-group">
+                <h4>2021 — Graduated</h4>
+                <ul>
+                    <li><a href="https://realvegechick.github.io/">Ziqi Huang</a> → EastMoney</li>
+                    <li><a href="https://xiaoye-hash.github.io/">Xiao Ye</a> → Ant Group</li>
+                    <li><a href="https://canonize.github.io/">Qitong Chen</a> → Shopee</li>
+                </ul>
+            </div>
 
+            <div class="student-group">
+                <h4>2020 — Graduated</h4>
+                <ul>
+                    <li><a href="https://ashenone66.cn/">Haoqi Ye</a> <span class="student-tag">S&amp;P'23</span> → Alibaba</li>
+                    <li><a href="https://sotasit.github.io/">Yukun Zhang</a> → Tencent</li>
+                    <li><a href="https://vvvvlu.github.io/">Wei Lu</a> → Gov</li>
+                    <li><a href="https://jwy630.github.io/">Yang Wang</a> → CMU</li>
+                </ul>
+            </div>
 
-                <hr size=2>
-                <h3><a name="background">Background</a></h3>
-                <div>
-                    <ul>
-                        <li>2023~Present, Fudan University, Pre-tenure Associate Professor </li>
-                        <li>2020~2022, Fudan University, School of Computer Science, PostDoc </li>
-                        <li>2014~2020, Fudan University, School of Computer Science, Ph.D </li>
-                        <li>2010~2014, Fudan University, Software School, B.Eng </li>
-                    </ul>
-                </div>
+            <div class="student-group">
+                <h4>2019 — Graduated</h4>
+                <ul>
+                    <li>Ming Zhong <span class="student-tag">CCS'20</span> → Ant Group</li>
+                    <li>Ruiqi Deng → Meituan</li>
+                </ul>
+            </div>
 
-                <hr size=2>
-                <h3><a name="publications">Publications</a></h3>
-                <div id="pub">
-                    <ol>
-                        <li>
-                            <div class="title">Anchors of Trust: A Usability Study on User Awareness, Consent, and Control in Cross-Device Authentication.</div>
-                            <div class="author">Xin Zhang, <u>Xiaohan Zhang</u>✉, Huijun Zhou, Bo Zhao.</div>
-                            <div class="venue">In Proceedings of Network and Distributed System Security Symposium (NDSS), San Diego, 2026. </div>
-                        </li>
+            <div class="student-group">
+                <h4>2018 — Co-advised</h4>
+                <ul>
+                    <li>Rui He → Tencent</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-                        <li>
-                            <div class="title">SEW: Strengthening Robustness of Black-box DNN Watermarking via Specificity Enhancement.</div>
-                            <div class="author">Huming Qiu, Mi Zhang, Junjie Sun, Peiyi Chen, <u>Xiaohan Zhang</u>, Min Yang.</div>
-                            <div class="venue">The SIGKDD Conference on Knowledge Discovery and Data Mining, Jeju, Korea (KDD 2026). </div>
-                        </li>
+    <!-- ===================== Footer ===================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-contact">
+                <a href="mailto:xh_zhang@fudan.edu.cn">xh_zhang [AT] fudan.edu.cn</a>
+            </div>
+            <div class="footer-contact">
+                Room D6007, NO.2 Interdisciplinary Building, NO.2005 Songhu Road, Yangpu District, Shanghai
+            </div>
+            <div style="margin-top: 10px; font-size: 13px;">
+                © <span id="year">2026</span> Xiaohan Zhang · I'm looking for students interested in cybersecurity!
+            </div>
+        </div>
+    </footer>
 
-                        <li>
-                            <div class="title">3D-ANC: Adaptive Neural Collapse for Robust 3D Point Cloud Recognition.</div>
-                            <div class="author">Yuanmin Huang, Wenxuan Li, Mi Zhang, <u>Xiaohan Zhang</u>, Xiaoyu You, Min Yang.</div>
-                            <div class="venue">The 40th AAAI Conference on Artificial Intelligence (AAAI 2026) </div>
-                        </li>
+    <script>
+        // Auto year + close mobile menu on link click
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelectorAll('#navLinks a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+    </script>
 
-                        <li>
-                            <div class="title">The Future Unmarked: Watermark Removal in AI-Generated Images via Next-Frame Prediction.</div>
-                            <div class="author">Huming Qiu, Zhaoxiang Wang, Mi Zhang, <u>Xiaohan Zhang</u>, Xiaoyu You, Min Yang</div>
-                            <div class="venue">The 39th Annual Conference on Neural Information Processing Systems (NeurIPS 2025)</div>
-                        </li>
-
-
-                        <li>
-                            <div class="title">Demystifying the (In)Security of QR Code-based Login in Real-world Deployments.</div>
-                            <div class="author">Xin Zhang, <u>Xiaohan Zhang</u>, Bo Zhao, Yuhong Nan, Zhichen Liu, Jianzhou Chen, Huijun Zhou, Min Yang.</div>
-                            <div class="venue">In Proceedings of the 34th USENIX Security Symposium (USENIX Security), Seattle, WA, USA, August 13-15, 2025 
-                                <b> [Security 2025], 17 CNVD and 25 NVDB IDs, <span style="color: red;">CAPPVD 2024 Mobile App Security Outstanding Cases, USENIX Security 2025 Honorable Mention Award</span></b>
-                                <a href="./files/QRLChecker-Security25.pdf"> [Paper]</a>                                
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="title">An Empirical Study on Fingerprint API Misuse with Lifecycle Analysis in Real-world Android Apps.</div>
-                            <div class="author">Xin Zhang*, <u>Xiaohan Zhang*</u>, Zhichen Liu, Bo Zhao, Zhemin Yang, Min Yang.</div>
-                            <div class="venue">In Proceedings of Network and Distributed System Security Symposium (NDSS), San Diego, 2025. 
-                                <b> [NDSS 2025], 184 CVE and 19 CNVD IDs, <span style="color: red;">NDSS 2025 Distinguished Paper Award</span></b>
-                                <a href="./files/FpAuth-ndss2025.pdf"> [Paper]</a>                                
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="title">The Skeleton Keys: A Large Scale Analysis of Credential Leakage in Mini-apps.</div>
-                            <div class="author">Yizhe Shi, Zhemin Yang, Kangwei Zhong, Guangliang Yang, Yifan Yang, <u>Xiaohan Zhang</u>, Min Yang.</div>
-                            <div class="venue">In Proceedings of Network and Distributed System Security Symposium (NDSS), San Diego, 2025. 
-                                <b> [NDSS 2025], 89 CVE IDs</b>
-                                <a href="./files/KeyMagnet-ndss2025.pdf"> [Paper]</a>                                
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="title">Understanding the (In)Security of Cross-side Face Verification Systems in Mobile Apps: A System Perspective.</div>
-                            <div class="author"><u>Xiaohan Zhang</u>, Haoqi Ye, Ziqi Huang, Xiao Ye, Yinzhi Cao, Yuan Zhang, Min Yang.</div>
-                            <div class="venue">In Proceedings of the 44th IEEE Symposium on Security and Privacy (S&P), San Francisco, CA, May 22-26, 2023. 
-                                <b> [S&P 2023], <span style="color: red;">2021 Most Valuable Vulnerability of CNVD</span></b>
-                                <a href="./files/XFVSChecker-S&P23.pdf"> [Paper]</a>
-                                <a href="https://xhzhang.github.io/XFVSChecker">[Website]</a>
-                                <a href="https://std.samr.gov.cn/gb/search/gbDetailed?id=EB58F4DA926CB2A2E05397BE0A0A7D33"><span style="color: red;">[A National Standard]</span></a>
-                                <a href="https://www.tc260.org.cn/upload/2023-05-31/1685501487351066337.pdf">[A White Paper on AI Security Standards]</a>
-                                <a href="https://secsys.fudan.edu.cn/a5/07/c26973a435463/page.htm">[Thanks Letters]</a>
-                                
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="title">Slowing Down the Aging of Learning-based Malware Detectors with API Knowledge.</div>
-                            <div class="author"><u>Xiaohan Zhang</u>, Mi Zhang, Yuan Zhang, Ming Zhong, Xin Zhang, Yinzhi Cao, Min Yang.</div>
-                            <div class="venue">In Transactions on Dependable and Secure Computing, <b>[TDSC 2022]</b>
-                                <a href="https://ieeexplore.ieee.org/document/9693181">[Paper]</a>
-                            </div>
-                        </li> 
-
-                        <li>
-                            <div class="title">Collect Responsibly but Deliver Arbitrarily? A Study on Cross-User Privacy Leakage in Mobile Apps.</div>
-                            <div class="author">Shuai Li, Zhemin Yang, Nan Hua, Peng Liu, <u>Xiaohan Zhang</u>, Guangliang Yang, Min Yang.</div>
-                            <div class="venue">In Proceedings of the 29th ACM Conference on Computer and Communications Security, <b>[CCS 2022]</b>
-                                <!-- <a>[Paper]</a> -->
-                            </div>
-                        </li>
-
-                        
-                        <li>
-                            <div class="title">Identity Confusion in WebView-based Mobile App-in-app Ecosystems.</div>
-                            <div class="author">Lei Zhang, Zhibo Zhang, Ancong Liu, Yinzhi Cao, <u>Xiaohan Zhang</u>, Yanjun Chen, Yuan Zhang, Guangliang Yang, Min Yang.</div>
-                            <div class="venue">In Proceedings of the 31st USENIX Security Symposium (USENIX Security), Boston, MA, USA, August 10-12, 2022. <b>[Security 2022], Distinguished Paper Award</b>
-                                <a href="https://yuanxzhang.github.io/paper/miniapp-identity-security22.pdf">[Paper]</a>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div class="title">Enhancing State-of-the-art Classifiers with API Semantics to Detect Evolved Android Malware. 
-                            </div>
-                            <div class="author"><u>Xiaohan Zhang</u>, Yuan Zhang, Ming Zhong, Daizong Ding, Yinzhi Cao,
-                                Yukun Zhang, Mi Zhang, Min Yang.</div>
-                            <div class="venue">In Proceedings of the 27th ACM Conference on Computer and Communications
-                                Security, Orlando, USA, November 9-13, 2020, <b>[CCS 2020], <span style="color: red;">Distinguished Paper Award Nomination (4/121)</span></b>
-                                <a href="https://yuanxzhang.github.io/paper/apigraph-ccs20.pdf">[Paper]</a>
-                                <a href="https://xhzhang.github.io/APIGraph">[Website]</a>
-                                [AR: 16.9%=121/715]
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="title">PDiff: Semantic-based Patch Presence Testing for Downstream Kernels.
-                            </div>
-                            <div class="author">Zheyue Jiang, Yuan Zhang, Jun Xu, Qi Wen, Zhenghe Wang, <u>Xiaohan Zhang</u>,
-                                Xinyu Xing, Min Yang, Zhemin Yang.</div>
-                            <div class="venue">In Proceedings of the 27th ACM Conference on Computer and Communications
-                                Security,  Orlando, USA, November 9-13, 2020, <b>[CCS 2020]</b>
-                                <a href="https://yuanxzhang.github.io/paper/pdiff-ccs20.pdf">[Paper]</a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="title">BScout: Direct Whole Patch Presence Test for Java Executables.</div>
-                            <div class="author">Jiarun Dai, Yuan Zhang, Zheyue Jiang, Yingtian Zhou, Junyan Chen, Xinyu
-                                Xing, <u>Xiaohan Zhang</u>, Xin Tan, Min Yang, Zhemin Yang.</div>
-                            <div class="venue">In Proceedings of the 29th USENIX Security Symposium, 
-                                Boston, MA, USA, August 12-14, 2020. <b>[Security 2020]</b>
-                                <a href="https://yuanxzhang.github.io/paper/bscout-security20.pdf">[Paper]</a>
-                            </div>
-                        </li>
-
-                         <li>
-                             <div class="title">How Android Developers Handle Evolution-induced API Compatibility
-                                 Issues: A Large-scale Study.</div>
-                             <div class="author">Hao Xia, Yuan Zhang, Yingtian Zhou, Xiaoting Chen, Yang Wang, Xiangyu
-                                 Zhang, Shuaishuai Cui, Gen Hong, <u>Xiaohan Zhang</u>, Min Yang, Zhemin Yang.</div>
-                             <div class="venue">In Proceedings of the 42nd International Conference on Software
-                                 Engineering, Seoul, South Korea, May 23-29, 2020.  <b>[ICSE 2020]</b>
-                                 <a href="https://yuanxzhang.github.io/paper/rapid-icse20.pdf">[Paper]</a>
-                             </div>
-                         </li>
-
-                         <li>
-                             <div class="title">An Empirical Study of Web Resource Manipulation in Real-world Mobile
-                                 Applications.</div>
-                             <div class="author"><u>Xiaohan Zhang</u>, Yuan Zhang, Qianqian Mo, Hao Xia, Zhemin Yang,
-                                 Min Yang,
-                                 Xiaofeng Wang, Long Lu, Haixin Duan.</div>
-                             <div class="venue">In Proceedings of the 27th USENIX Security Symposium, 
-                                 Baltimore, USA, August 15-17, 2018. <b>[Security 2018]</b>
-                                 <a href="https://yuanxzhang.github.io/paper/xpmchecker-security2018.pdf">[Paper]</a>
-                                 <a href="https://github.com/seclab-fudan/XPMChecker">[Dataset]</a>
-                                 [AR: 16.2%=113/697]
-                             </div>
-                         </li>
-                         <li>
-                             <div class="title">Detecting Third-Party Libraries in Android Applications with High
-                                 Precision and Recall.</div>
-                             <div class="author">Yuan Zhang, Jiarun Dai, <u>Xiaohan Zhang</u>, Sirong Huang, Zhemin
-                                 Yang, Min Yang, Hao Chen.</div>
-                             <div class="venue">In Proceedings of IEEE International Conference on Software Analysis,
-                                 Evolution and Reengineering, SANER’18, Campobasso, Italy, March 20-23, 2018.
-                                 <a href="https://yuanxzhang.github.io/paper/libpecker-saner2018.pdf">[Paper]</a>
-                                 <a href="https://github.com/seclab-fudan/LibPecker">[Source Code]</a>
-                             </div>
-                         </li>
-
-                    </ol>
-
-                    Pre-print & Others
-                    <ol>
-                        <li>
-                            <div class="title">Understanding Privacy Over-collection in WeChat Sub-app Ecosystem, 2023 <a href="https://arxiv.org/abs/2306.08391">[arXiv]</a></div>
-                        </li>
-                        <li>
-                            <div class="title">MiniBot: A Lightweight Dynamic Test Input Generation Framework for Mini-Apps [in Chinese], 2024, Journal of Chinese Computer Systems. </div>
-                        </li>
-
-
-                    </ol>
-                    
-                    
-                    
-
-
-                <hr size=2>
-                <h3><a name="awards">Awards</a></h3>
-                <div>
-                    <ul>
-                        <li>Gold Award in the App Security Track of the Digital Chian Innovation Contest (DCIC 2025) </li>
-                        <li>CAPPVD 2024 Outstanding Cases of Mobile App Vulnerability Management</li>
-                        <li>NDSS 2025 Distinguished Paper Award</li>
-                        <li>Excellent Instructor of "Huawei Cup" The 1st China Postgraduate Network Security Innovation Competition</li>
-                        <li>USENIX Security 2022 Distinguished Paper Award </li>
-                        <li>Chinese National Vulnerability Database (CNVD) 2021 Most Valuable Vulnerability </li>
-                        <li>CCF 2021 Natural Science Award Second Prize </li>
-                        <li>SCS 2021 Natural Science Award First Prize</li>
-                        <li>Huawei 2020 Outstanding Technical Achievement Award</li>
-                        <li>ACM CCS 2020 Distinguished Papar Nomination</li>
-                    
-                    </ul>
-                </div>
-
-
-                <hr size=2>
-                <h3><a name="services">Services</a></h3>
-                <div>
-                    <ul>
-                        <li>Conference (including sub-reviewer)</li>
-                        <ul>
-                            <li>CCS 2018, 2019; EuroS&P 2021; AisaCCS 2021; CODASPY 2021; SecureComm 2020, 2023</li>
-                        </ul>
-
-                        <li>Journal (including sub-reviewer) </li>
-                        <ul>
-                            <li>TOPS 2024; JCST 2023; TDSC 2020; TMC 2021; COSE 2019, 2020, 2021; JCRD 2021</li>
-                        </ul>
-
-                    </ul>
-                </div>
-
-                <hr size=2>
-                <h3><a name="teaching">Teaching</a></h3>
-                <div>
-                    <ul>
-                        <li>Advanced Optimizing Compilers, 25'Spring </li>
-                        <li>Foundations of Deep Learning, 24'fall, 25'fall </li>
-                        <li>System Security, 24'fall</li>
-                        <li>Advanced Attack and Defense Techniques, 24'Spring </li>
-                        <li>Principles of Reverse Engineering, 2018, TA</li>
-                    </ul>
-                </div>
-
-                
-
-
-                <hr size=2>
-                <h3><a name="students">Students</a></h3>
-                <div>
-                    <ul>
-
-                        <li>Current</li>
-                        <ul>
-                            <li>2025: Xiangjing Zhang, Haozhe Zhang, Wenjie Yang</li>
-                            <li>2024: Huijun Zhou, Xihua Shen, Yutao Shi, Yujia Ma [Tencent Project and Internship]</li>
-                            <li>2023: Hui Ouyang (PhD Student), Jianzhou Chen, Bo Zhao, Yuhan Gu [Tencent Project and Internship] </li>
-                            <li>2022: Xin Zhang (PhD Student) [NDSS'25, Security'25, NDSS'26]</li>                
-                        </ul>
-
-                        <li>2022</li>
-                        <ul>
-                            <li><a href="https://jiujiuyan.github.io">Xinyu Cong</a>, ByteDance</li>
-                            <li><a href="https://showfaker.top/">Liang Niu</a>, Huawei </li>
-                            <li>Zhichen Liu, EastMoney</li>
-                        </ul>
-
-                        <li>2021</li>
-                        <ul>
-                            <li><a href="https://realvegechick.github.io/">Ziqi Huang</a>,  EastMoney</li>
-                            <li><a href="https://xiaoye-hash.github.io/">Xiao Ye</a>, Ant Group</li>
-                            <li><a href="https://canonize.github.io/">Qitong Chen</a>, Shopee</li>
-                        </ul>
-
-                        <li>2020</li>
-                        <ul>
-                            <li><a href="https://ashenone66.cn/">Haoqi Ye</a> [S&P'23], Alibaba</li>
-                            <li><a href="https://sotasit.github.io/">Yukun Zhang</a>, Tencent</li>
-                            <li><a href="https://vvvvlu.github.io/">Wei Lu, WO</a></li>
-                            <!-- Working in Orgnizations 事业单位工作 -->
-                            <li><a href="https://jwy630.github.io/">Yang Wang, CMU</a></li> 
-                            <!-- Study Abroad 出国留学 CMU, GT-->
-                        </ul>
-
-                        <li>2019 </li>
-                        <ul>
-                            <li>Ming Zhong [CCS'20], Ant Group</li>
-                            <li>Ruiqi Deng, Meituan</li>
-                        </ul>
-
-                        <li>2018 Co-advised </li>
-                        <ul>
-                            <li>Rui He, Tencent</li>
-                        </ul>
-
-                    </ul>
-                </div>
-
-
-
-                <hr size=2>
-
-                <br>
-                <center><small>Contact: xh_zhang [AT] fudan.edu.cn</small></center>
-                <!-- <div id="tracker">
-                    <a href="https://clustrmaps.com/site/1bcax" title="Visit tracker">
-                    <img src="//www.clustrmaps.com/map_v2.png?d=rwQOBUoEUsMMUG9sSgl0xjIOpel63r79cNglNwNR7t0&cl=ffffff"></a>
-                </div> -->
-
-                <br>
-                <!-- GoStats Simple HTML Based Code -->
-
-            </td>
-            <td width=5% bgcolor="white"></td>
-            <td width=15% bgcolor="lightgray"></td>
-
-
-        </tr>
-
-    </table>
-
-
-    
 </body>
 
 </html>

@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Windows download metadata
+*:Zone.Identifier
+
+# Helper script (not part of the site)
+files/download_pdfs.sh
