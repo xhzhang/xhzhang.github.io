@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship · Xiaohan Zhang</title>
+    <meta name="description" content="Research internship on LLM agent system security — for self-driven students aiming at top-venue publications.">
+
+    <style>
+        :root {
+            --accent: #1d4ed8;
+            --accent-dark: #1e3a8a;
+            --text: #24292f;
+            --muted: #57606a;
+            --border: #eaeef2;
+            --maxw: 800px;
+        }
+
+        * { box-sizing: border-box; }
+        [hidden] { display: none !important; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            background: #fff;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+        /* ---------- Navbar ---------- */
+        nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,.92);
+            backdrop-filter: saturate(180%) blur(10px);
+            -webkit-backdrop-filter: saturate(180%) blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+            height: 56px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { font-weight: 700; color: #111827; font-size: 15.5px; }
+        .nav-logo span { color: var(--accent); }
+        .nav-right { display: flex; align-items: center; }
+        .lang-toggle {
+            font-size: 13px; color: var(--muted); font-family: inherit;
+            border: 1px solid var(--border); background: #fff;
+            border-radius: 6px; padding: 4px 10px; cursor: pointer;
+            transition: all .15s ease;
+        }
+        .lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ---------- Page head ---------- */
+        .page-head { padding: 64px 0 10px; }
+        .page-head h1 { font-size: 32px; margin: 0 0 6px; color: #111827; letter-spacing: -.01em; }
+        .page-head .sub { color: var(--accent); font-weight: 600; font-size: 16.5px; margin: 0 0 16px; }
+        .page-head p.lead { color: var(--muted); font-size: 15.5px; margin: 0 0 12px; }
+
+        /* ---------- Sections ---------- */
+        section { padding: 30px 0 24px; border-top: 1px solid var(--border); }
+        .section-title { font-size: 20px; margin: 0 0 18px; color: #111827; }
+
+        /* ---------- Lists ---------- */
+        ul.plain { list-style: none; padding: 0; margin: 0; font-size: 15px; }
+        ul.plain li { padding: 5px 0; border-bottom: 1px solid #f2f4f7; }
+        ul.plain li:last-child { border-bottom: none; }
+
+        /* ---------- Intern cards (typography-only) ---------- */
+        .intern { margin: 0 0 18px; }
+        .intern .name { font-weight: 600; color: #111827; font-size: 15.5px; }
+        .intern .desc { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+
+        /* ---------- Apply box ---------- */
+        .apply-note {
+            border-left: 3px solid var(--accent);
+            padding-left: 14px;
+            color: var(--text);
+            font-size: 15px;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--border); padding: 28px 0;
+            text-align: center; color: var(--muted); font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .page-head { padding: 40px 0 6px; }
+            .page-head h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" data-en="← Xiaohan Zhang" data-zh="← 返回主页">← Xiaohan Zhang</a>
+            <div class="nav-right">
+                <button class="lang-toggle" id="langToggle" type="button">中文</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-head">
+        <div class="container">
+            <h1 data-en="Research Internship" data-zh="科研实习生招募">Research Internship</h1>
+            <p class="sub" data-en="Agent System Security · Fudan University" data-zh="智能体系统安全 · 复旦大学">Agent System Security · Fudan University</p>
+            <p class="lead" data-lang="en">
+                We are recruiting <strong>excellent, self-driven students</strong> as research interns,
+                with the goal of publishing papers at top security venues (e.g., the "Big Four").
+                The current focus is on the security of LLM-based agent systems.
+            </p>
+            <p class="lead" data-lang="zh" hidden>
+                面向<strong>优秀、自驱力强的学生</strong>招收科研实习生，以在安全顶级会议（如“四大”）发表论文为目标。
+                当前主要研究方向为智能体（LLM Agent）系统安全。
+            </p>
+        </div>
+    </header>
+
+    <section id="directions">
+        <div class="container">
+            <h2 class="section-title" data-en="Research Directions" data-zh="研究方向">Research Directions</h2>
+            <ul class="plain">
+                <li data-en="Security of agent frameworks and their tool-use / permission mechanisms" data-zh="智能体框架及其工具调用 / 权限机制的安全">Security of agent frameworks and their tool-use / permission mechanisms</li>
+                <li data-en="Attacks and defenses in multi-agent and tool-calling pipelines" data-zh="多智能体与工具调用链路的攻击与防御">Attacks and defenses in multi-agent and tool-calling pipelines</li>
+                <li data-en="Memory, RAG, and context security in agent systems" data-zh="智能体系统中的记忆、RAG 与上下文安全">Memory, RAG, and context security in agent systems</li>
+                <li data-en="Empirical security measurement of real-world agent deployments" data-zh="真实智能体应用的安全实证测量">Empirical security measurement of real-world agent deployments</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="interns">
+        <div class="container">
+            <h2 class="section-title" data-en="Previous Interns" data-zh="往期实习生">Previous Interns</h2>
+
+            <div class="intern">
+                <div class="name">H*** Zhang</div>
+                <div class="desc" data-lang="en">One paper under submission to a Big-Four security venue.</div>
+                <div class="desc" data-lang="zh" hidden>一篇论文投稿安全“四大”会议（在审）。</div>
+            </div>
+            <div class="intern">
+                <div class="name">W*** Li</div>
+                <div class="desc" data-lang="en">One arXiv preprint.</div>
+                <div class="desc" data-lang="zh" hidden>一篇 arXiv 预印本。</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply">
+        <div class="container">
+            <h2 class="section-title" data-en="How to Apply" data-zh="申请方式">How to Apply</h2>
+            <p class="apply-note" data-lang="en">
+                Send your CV (and transcript if available) to <i>xh_zhang [AT] fudan.edu.cn</i>
+                with the subject "Internship".
+            </p>
+            <p class="apply-note" data-lang="zh" hidden>
+                请将简历（可附成绩单）发送至 <i>xh_zhang [AT] fudan.edu.cn</i>，邮件标题注明“实习”。
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span data-en="© Xiaohan Zhang · Fudan University" data-zh="© Xiaohan Zhang · 复旦大学">© Xiaohan Zhang · Fudan University</span>
+        </div>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-en]').forEach(function (el) {
+                el.textContent = el.dataset[lang];
+            });
+            document.querySelectorAll('[data-lang]').forEach(function (el) {
+                el.hidden = (el.dataset.lang !== lang);
+            });
+            document.getElementById('langToggle').textContent = (lang === 'zh') ? 'EN' : '中文';
+            try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
+        }
+        document.getElementById('langToggle').addEventListener('click', function () {
+            var isZh = (document.getElementById('langToggle').textContent === 'EN');
+            setLang(isZh ? 'en' : 'zh');
+        });
+        var saved = 'en';
+        try { saved = localStorage.getItem('lang') || 'en'; } catch (e) { /* ignore */ }
+        if (saved === 'zh') setLang('zh');
+    </script>
+
+</body>
+
+</html>
